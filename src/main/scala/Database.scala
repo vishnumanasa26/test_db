@@ -2,17 +2,14 @@
   * Created by dell on 8/30/2016.
   */
 
-//import com.datastax.spark.connector._
-//import com.datastax.spark.connector.cql._
 import com.datastax.driver.core.{Cluster, Session}
-
 import scala.collection.JavaConversions
-  //import org.json4s.ShortTypeHints
-  //import org.json4s.native.Serialization
+import org.json4s.ShortTypeHints
+import org.json4s.native.Serialization
 
 
-  case class Metrics(NAME:String, DATE: Double, IP_ADD:Int, LOAD:Int, MEMORY:Int) extends ConnectToCassandra
-
+  case class Metrics(NAME:String, DATE: String, LOAD:Int, MEMORY:Int) extends ConnectToCassandra
+   trait ConnectToCassandra
   object ConnectToCassandra {
 
     var cluster: Cluster = null
@@ -42,17 +39,23 @@ import scala.collection.JavaConversions
 
     println("\ncompleated set up")
 
-    def nik(metric: Metrics) = {
+    def store(metric: Metrics) = {
 
       try{
-        println("\n In try of nik")
+        //println("\n In try of nik")
         val keyspace = "softhouse"
         val (cluster, session) = setup(keyspace, "localhost", 9042)
         println("\nafter setup.........")
+        val name1 = metric.NAME.toString
+        val date1 = metric.DATE.toString
+        //val ipAddress1 = metric.IP_ADD.toString
+        val cpuLoad1 = metric.LOAD.toInt
+        val cpuMemory1 = metric.MEMORY.toInt
         //val id1 = metric.ID.toInt
         //val name1 = metric.NAME.toString
 
-        val cql = "INSERT INTO metrics (uname, date_time, ip_address, cpu_load, memory) VALUES ('doneee', '2', '3', 9, 5)"
+
+        val cql = "INSERT INTO metrics (uname, date_time, cpu_load, memory) VALUES ('"+metric.NAME+"', '"+date1+"',  "+cpuLoad1+", "+cpuMemory1+")"
         val resultSet = session.execute( cql )
       }
 
@@ -61,17 +64,44 @@ import scala.collection.JavaConversions
         close()
         println("Done!")
       }
-   // return metric
+
     }
 
+    def retrive(): List[Metrics] =
+    {  var values = List[Metrics]()
+      try {
+        val keyspace = "softhouse"
+        val (cluster, session) = setup(keyspace, "localhost", 9042)
 
-    //private implicit val formats = Serialization.formats(ShortTypeHints(List(classOf[ConnectToCassandra])))
-    //def toJSONM(metric:List[Metrics])=Serialipackage com.roblayton.example
+        val cql = "SELECT * FROM metrics"
+        val resultSet = session.execute( cql )
+        val itr = JavaConversions.asScalaIterator(resultSet.iterator)
+        itr.foreach( row => {
+          val name = row.getString("uname")
+          val date = row.getString("date_time")
+          val cpuLoad = row.getInt("cpu_load")
+          val memory = row.getInt("memory")
+          var xy = Metrics(name, date, cpuLoad, memory)
+          values = xy :: values
+          println(s"$name $date")
+
+        })
+
+
+      }
+      finally {
+        ConnectToCassandra.close()
+        println("Done!")
+      }
+      return values
+    }
+     //to convert to json objects
+     private implicit val formats = Serialization.formats(ShortTypeHints(List(classOf[ConnectToCassandra])))
 
 
   }
 
-  trait ConnectToCassandra
+
 
 
 

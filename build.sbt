@@ -1,9 +1,12 @@
 
+
 name := "test_db"
 
 version := "1.0"
 
 scalaVersion := "2.11.8"
+
+//sbtPlugin := true
 
 //jarName in assembly := "spray-cassandra.jar"
 
@@ -18,6 +21,6 @@ libraryDependencies ++= Seq(
   "io.spray" %% "spray-client" % "1.3.2",
   "io.spray" %% "spray-testkit" % "1.3.2" % "test",
   "org.json4s" %% "json4s-native" % "3.2.10",
-  "io.spray" %%  "spray-json" % "1.3.2"
+  "io.spray" %% "spray-json" % "1.3.2"
 
 )
