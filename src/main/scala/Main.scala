@@ -1,12 +1,9 @@
 import com.datastax.driver.core.{Cluster, Session}
+import spray.routing.HttpService
 
 /**
   * Created by dell on 8/30/2016.
   */
-
-
-
-
 
 import akka.actor.ActorSystem
 import spray.routing.SimpleRoutingApp
@@ -18,7 +15,7 @@ import org.json4s.JsonAST.JObject
 import org.json4s.DefaultFormats
 import org.json4s.native.Serialization.{read, write, writePretty}
 
-object Main extends App with SimpleRoutingApp with Configuration with Json4sSupport {
+object Main extends App with SimpleRoutingApp with Configuration with Json4sSupport with HttpService {
 
   implicit var actorSystem = ActorSystem()
 
@@ -44,7 +41,12 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
         }
       }
     } ~
-      get {
+    get {
+      path("index") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\index.html")
+      }
+    } ~
+   get {
         path("view") {
           complete {
               //ConnectToCassandra.toJSONM(
@@ -68,6 +70,14 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
         }
       }
     }
+    /*val myRoute =
+      get {
+        compressResponse()(getFromResourceDirectory("client")) ~
+          path("") {
+            getFromResource("client/index.html")
+          }
+      }
+*/
 
   }
 }

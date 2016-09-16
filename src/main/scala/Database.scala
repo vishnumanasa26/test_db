@@ -8,7 +8,7 @@ import org.json4s.ShortTypeHints
 import org.json4s.native.Serialization
 
 
-  case class Metrics(NAME:String, DATE: String, LOAD:Int, MEMORY:Int) extends ConnectToCassandra
+  case class Metrics(NAME:String, DATE: String, LOAD:Int, MEMORY_TOTAL:Int, MEMORY:Int) extends ConnectToCassandra
    trait ConnectToCassandra
   object ConnectToCassandra {
 
@@ -55,7 +55,7 @@ import org.json4s.native.Serialization
         //val name1 = metric.NAME.toString
 
 
-        val cql = "INSERT INTO metrics (uname, date_time, cpu_load, memory) VALUES ('"+metric.NAME+"', '"+date1+"',  "+cpuLoad1+", "+cpuMemory1+")"
+        val cql = "INSERT INTO metrics (uname, date_time, cpu_load, memory, total_memory) VALUES ('"+metric.NAME+"', '"+date1+"',  "+cpuLoad1+", "+cpuMemory1+", "+metric.MEMORY_TOTAL+")"
         val resultSet = session.execute( cql )
       }
 
@@ -81,9 +81,10 @@ import org.json4s.native.Serialization
           val date = row.getString("date_time")
           val cpuLoad = row.getInt("cpu_load")
           val memory = row.getInt("memory")
-          var xy = Metrics(name, date, cpuLoad, memory)
+          val memory_total = row.getInt("total_memory")
+          var xy = Metrics(name, date, cpuLoad, memory_total, memory)
           values = xy :: values
-          println(s"$name $date")
+          //println(s"$name $date")
 
         })
 
