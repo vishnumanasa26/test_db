@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <body>
-<h1> hello </h1>
+
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+    <ul>
+        <li ng-repeat="x in myData">
+            {{ x.NAME + ', ' + x.DATE }}
+        </li>
+    </ul>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+  $http.get(http://localhost:8080/view).then(function (response) {
+      $scope.myData = response.data;
+  });
+});
+</script>
+
 </body>
 </html>

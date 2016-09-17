@@ -37,7 +37,7 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
     get {
       path("hello1") {
         complete {
-          "Hello World!"
+          "Hello"
         }
       }
     } ~
@@ -70,15 +70,6 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
         }
       }
     }
-    /*val myRoute =
-      get {
-        compressResponse()(getFromResourceDirectory("client")) ~
-          path("") {
-            getFromResource("client/index.html")
-          }
-      }
-*/
-
   }
 }
 
