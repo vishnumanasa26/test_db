@@ -49,10 +49,9 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
    get {
         path("view") {
           complete {
-              //ConnectToCassandra.toJSONM(
+
                 ConnectToCassandra.retrive()
-              //"Done"
-              //daa
+
           }
 
         }
