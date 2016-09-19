@@ -26,10 +26,10 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
 
 
 //  def main(args: Array[String]): Unit = {
-    println("helloooo11")
+   // println("helloooo11")
     //val ma = Metrics("lol", 4,'5',6,7)
     //ConnectToCassandra.store(ma);
-    //println("maaaa")
+    println("maaaa")
 
 
 
