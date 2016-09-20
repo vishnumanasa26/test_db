@@ -22,14 +22,14 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
   // globally override the default format to respond with Json
   implicit def json4sFormats: Formats = DefaultFormats
 
-    var daa = Data1.daa
+    //var daa = Data1.daa
 
 
 //  def main(args: Array[String]): Unit = {
-   // println("helloooo11")
+    println("helloooo11")
     //val ma = Metrics("lol", 4,'5',6,7)
     //ConnectToCassandra.store(ma);
-    println("maaaa")
+   // println("maaaa")
 
 
 
@@ -43,9 +43,19 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
     } ~
     get {
       path("index") {
-          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\index.html")
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\index.html")
       }
     } ~
+      get {
+        path("amchart-graph.js") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\amchart-graph.js")
+        }
+      } ~
+      get {
+        path("graph.css") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\graph.css")
+        }
+      } ~
    get {
         path("view") {
           complete {
