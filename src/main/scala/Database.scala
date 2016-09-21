@@ -66,7 +66,7 @@ import org.json4s.native.Serialization
       }
 
     }
-
+// retrives the whole data in the database
     def retrive(): List[Metrics] =
     {  var values = List[Metrics]()
       try {
@@ -96,6 +96,105 @@ import org.json4s.native.Serialization
       }
       return values
     }
+
+//retrives details of a particular server
+    def retrive_user( server_name: String): List[Metrics] =
+    {  var values = List[Metrics]()
+      try {
+        val keyspace = "softhouse"
+        val (cluster, session) = setup(keyspace, "localhost", 9042)
+
+        val cql = "SELECT * FROM metrics where uname = '"+server_name+"'"
+        val resultSet = session.execute( cql )
+        val itr = JavaConversions.asScalaIterator(resultSet.iterator)
+        itr.foreach( row => {
+          val name = row.getString("uname")
+          val date = row.getString("date_time")
+          val cpuLoad = row.getInt("cpu_load")
+          val memory = row.getInt("memory")
+          val memory_total = row.getInt("total_memory")
+          var xy = Metrics(name, date, cpuLoad, memory_total, memory)
+          values = xy :: values
+          //println(s"$name $date")
+
+        })
+
+
+      }
+      finally {
+        ConnectToCassandra.close()
+        println("Done!")
+      }
+      return values
+    }
+
+//to delete details of a particular user
+    def delete_user(userName: String) = {
+
+      try{
+        //println("\n In try of nik")
+        val keyspace = "softhouse"
+        val (cluster, session) = setup(keyspace, "localhost", 9042)
+        //val name1 = metric.NAME.toString
+        //val date1 = metric.DATE.toString
+        //val ipAddress1 = metric.IP_ADD.toString
+        //val cpuLoad1 = metric.LOAD.toInt
+        //val cpuMemory1 = metric.MEMORY.toInt
+        //val id1 = metric.ID.toInt
+        //val name1 = metric.NAME.toString
+        val cql = "delete * from metrics where uname = '"+userName+"'"
+        val resultSet = session.execute( cql )
+      }
+
+
+      finally {
+        close()
+        println("Done!")
+      }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+    //retrives details of a servers of a particular date
+    def retrive_date( date: String): List[Metrics] =
+    {  var values = List[Metrics]()
+      try {
+        val keyspace = "softhouse"
+        val (cluster, session) = setup(keyspace, "localhost", 9042)
+
+        val cql = "SELECT * FROM metrics where uname = '"+date+"'"
+        val resultSet = session.execute( cql )
+        val itr = JavaConversions.asScalaIterator(resultSet.iterator)
+        itr.foreach( row => {
+          val name = row.getString("uname")
+          val date = row.getString("date_time")
+          val cpuLoad = row.getInt("cpu_load")
+          val memory = row.getInt("memory")
+          val memory_total = row.getInt("total_memory")
+          var xy = Metrics(name, date, cpuLoad, memory_total, memory)
+          values = xy :: values
+          //println(s"$name $date")
+
+        })
+
+
+      }
+      finally {
+        ConnectToCassandra.close()
+        println("Done!")
+      }
+      return values
+    }
+
      //to convert to json objects
      private implicit val formats = Serialization.formats(ShortTypeHints(List(classOf[ConnectToCassandra])))
 
