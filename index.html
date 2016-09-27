@@ -1,29 +1,36 @@
-<!DOCTYPE html>
-<html>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<body>
+<HTML>
+	<HEAD>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
-<div ng-app="myApp" ng-controller="customersCtrl">
+        <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+		<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
+		<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
+		<script type="text/javascript" src="http://www.amcharts.com/lib/3/amstock.js"></script>
 
-    <ul>
-        <li ng-repeat="x in myData">
-            {{ x.NAME + ', ' + x.DATE + ', ' + x.LOAD +', ' + x.MEMORY_TOTAL + ' ,' + x.MEMORY }}
-        </li>
-    </ul>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 
-</div>
+        <script type="text/javascript" src="amchart-graph.js"></script>
+        <link rel = "stylesheet" type="text/css" href="graph.css" media="screen"/>
 
-<script>
-var app = angular.module('myApp', []);
-app.controller('customersCtrl', function($scope, $http) {
-  $http.get("http://localhost:8080/view").then(function (response) {
-      $scope.myData = response.data;
-  });
-});
-</script>
+	</HEAD>
+    <BODY ng-app="chartdiv">
+    <h1> {{hello}}</h1>
+    <div>
 
-</body>
+        <ul>
+           <!-- <li><a href="http://localhost:8080/view">Complete Details</a></li> -->
+            <li ng-click="details()"><a href="#details">Complete Details</a></li>
+            <li ng-click="memory()"><a href="#memory">Memory Graph</a></li>
+            <li nq-click=""><a href="#graphs">Load Graph</a></li>
+            <li ng-click=""><a href="#pie">Memory Pie-chart</a></li>
+        </ul>
+    </div>
+    <div ng-controller="chart" ng-model="write" ng-view>
+        <h1>{{value}} {{write}} {{details1}}</h1> <!-- replace id with ng-app-->
+    </div>
+    </BODY>
+
 </html>
-
-
-
