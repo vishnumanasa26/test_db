@@ -2,7 +2,7 @@
 	<HEAD>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<!--        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">   -->
 
         <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 		<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
@@ -17,12 +17,14 @@
 
 	</HEAD>
     <BODY ng-app="chartdiv">
-    <h1> {{hello}}</h1>
+    <p >
+    <h1 class="title"> {{hello}}</h1>
+    </p>
     <div>
 
         <ul>
            <!-- <li><a href="http://localhost:8080/view">Complete Details</a></li> -->
-            <li ng-click="details()"><a href="#details">Complete Details</a></li>
+            <li><a href="#details">Complete Details</a></li>
             <li ng-click="memory()"><a href="#memory">Memory Graph</a></li>
             <li nq-click=""><a href="#graphs">Load Graph</a></li>
             <li ng-click=""><a href="#pie">Memory Pie-chart</a></li>

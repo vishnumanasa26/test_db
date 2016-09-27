@@ -7,7 +7,7 @@ var app = angular.module('chartdiv', ["ngRoute"]);
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/details",{
-            templateUrl : "in.html"
+            templateUrl : "http://localhost:8080/view"
         })
         .when("/memory",{
             templateUrl : ""
@@ -21,7 +21,7 @@ app.config(function ($routeProvider) {
 });
 
 app.run(function($rootScope) {
-    $rootScope.hello = 'ROOT SCOPE';
+    $rootScope.hello = 'Monitoring Server Metrics';
     $rootScope.memory = function () {
         $rootScope.details1 = "root details";
 

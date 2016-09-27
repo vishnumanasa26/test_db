@@ -1,0 +1,42 @@
+#chartdiv {
+    width	: 80%;
+    height	: 500px;
+    position: relative;
+    right: 0px;
+    border: 3px solid #73AD21;
+    padding: 10px;
+    float: right;
+    text-align: left;
+}
+
+.title
+{
+    color: #73AD21;
+    text-align: center;
+    margin: 1%;
+    padding: 10px;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 1%;
+    padding: 10px;
+    width: 200px;
+    float: left;
+    background-color: #73AD21;
+}
+
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: #228B22;
+    color: white;
+}
+
