@@ -8,71 +8,16 @@
 <head>
     <!--  <link rel="stylesheet" type="text/css" href="graph.css"> -->
 </head>
-<body ng-app="chartApp">
+<body ng-app="chartdiv">
 
-<script>
-    var app = angular.module('chartApp', ['ng-fusioncharts']);
-
-    app.controller("MyController", function($scope, $http) {
-        // chart data source
-
-        $http.get("http://localhost:8080/view").then(function (response) {
-            $scope.myData = response.data;
-        });
-
-        $scope.dataSource = {
-            chart: {
-                caption: "Server Metrics",
-                subCaption: "System Load with respect to Time",
-                xAxisName: "Time",
-                yAxisName: "System Load",
-                //numberPrefix: "$",
-                theme: "ocean"
-            },
-
-
-            data:[]
-        };
-
-        $scope.updateMyChartData = function (x) {
-
-            console.log($scope.myData);
-            var x;
-            for(x in $scope.myData) {
-                $scope.dataSource.data.push({'label': $scope.myData[x].DATE, 'value': $scope.myData[x].LOAD});
-
-            }
-
-        };
-    });
-
-
-</script>
-
-<div ng-controller= "MyController">
+<div ng-controller= "MemoryController">
     <fusioncharts
-            width= 80%
+            width= 100%
             height=90%
             type="column2d"
             datasource="{{dataSource}}">
     </fusioncharts>
     <p><a class="btn btn-default" ng-click="updateMyChartData()"> Click here to view graph </a></p>
-</div>
-
-
-
-<div ng-controller="MyController">
-
-
-    <table>
-        <tr>
-            <th>name</th>
-        </tr>
-        <tr ng-repeat="x in myData">
-            <td ng-model="dataSource.data[1].label"> {{x.LOAD}} </td>
-        </tr>
-    </table>
-
 </div>
 
 </body>

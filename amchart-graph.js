@@ -87,6 +87,44 @@ app.controller("MyController", function($scope, $http) {
 });
 
 
+//controller for memoryGraph.html page
+app.controller("MemoryController", function($scope, $http) {
+    // chart data source
+
+    $http.get("http://localhost:8080/view").then(function (response) {
+        $scope.myData = response.data;
+    });
+
+    $scope.dataSource = {
+        chart: {
+            caption: "Server Metrics",
+            subCaption: "System Memory used with respect to Time",
+            xAxisName: "Time",
+            yAxisName: "System Memory", //memory used
+            //numberPrefix: "$",
+            theme: "ocean"
+        },
+
+
+        data:[]
+    };
+
+    $scope.updateMyChartData = function (x) {
+
+        console.log($scope.myData);
+        var x;
+        for(x in $scope.myData) {
+            $scope.dataSource.data.push({'label': $scope.myData[x].DATE, 'value': $scope.myData[x].MEMORY});
+
+        }
+
+    };
+});
+
+
+
+
+
 //
 app.controller('chart', function ($scope) {
     $scope.value = "this is chart"
