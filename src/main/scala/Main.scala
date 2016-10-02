@@ -1,4 +1,5 @@
 import com.datastax.driver.core.{Cluster, Session}
+import spray.http.HttpHeaders.RawHeader
 import spray.routing.HttpService
 
 /**
@@ -13,7 +14,7 @@ import spray.httpx.Json4sSupport
 import org.json4s.Formats
 import org.json4s.JsonAST.JObject
 import org.json4s.DefaultFormats
-import org.json4s.native.Serialization.{read, write, writePretty}
+import org.json4s.native.Serialization._
 
 object Main extends App with SimpleRoutingApp with Configuration with Json4sSupport with HttpService {
 
@@ -26,10 +27,10 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
 
 
 //  def main(args: Array[String]): Unit = {
-    println("helloooo11")
+  // println("helloooo11")
     //val ma = Metrics("lol", 4,'5',6,7)
     //ConnectToCassandra.store(ma);
-   // println("maaaa")
+ println("maaaa")
 
 
 
@@ -48,6 +49,22 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
           getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\index.html")
       }
     } ~
+      get {
+        path("dropdown.html") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\dropdown.html")
+        }
+      } ~
+    //to obtain compDetails to spray-can server
+      get {
+        path("compDetails.html") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\compDetails.html")
+        }
+      } ~
+      get {
+        path("in.html") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\in.html")
+        }
+      } ~
     //to obtain js file to spray-can server
       get {
         path("amchart-graph.js") {
@@ -63,29 +80,33 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
     //details of all the servers
    get {
         path("view") {
-          complete {
+          respondWithHeader(RawHeader("Access-Control-Allow-Origin", "*")) {
+            complete {
 
-                ConnectToCassandra.retrive()
+              ConnectToCassandra.retrive()
 
+            }
           }
-
         }
       }~
     //view details of a particular server
       get {
         path("viewServer"/ Segment ) { name =>
-          complete {
-            ConnectToCassandra.retrive_user(name)
+          respondWithHeader(RawHeader("Access-Control-Allow-Origin", "*")) {
+            complete {
+              ConnectToCassandra.retrive_user(name)
+            }
           }
-          }
-
+        }
       }~
       get {
         path("date") {
-          parameters("name") {
-            { name =>
-              complete {
-                ConnectToCassandra.retrive_date(name)
+          respondWithHeader(RawHeader("Access-Control-Allow-Origin", "*")) {
+            parameters("name") {
+              { name =>
+                complete {
+                  ConnectToCassandra.retrive_date(name)
+                }
               }
             }
           }
@@ -93,23 +114,27 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
       }~
     //delete details of a particular server
       delete {
-        path("deleteServer"/ Segment ) { name =>
-          ConnectToCassandra.delete_user(name)
-          complete {
-            "delete successful"
+        respondWithHeader(RawHeader("Access-Control-Allow-Origin", "*")) {
+          path("deleteServer" / Segment) { name =>
+            ConnectToCassandra.delete_user(name)
+            complete {
+              "delete successful"
+            }
           }
         }
       }~
       post {//post is used to update the record...we can use put if we want to insert
-      path("add") {
+        respondWithHeader(RawHeader("Access-Control-Allow-Origin", "*")){
+        path("add") {
           entity(as[JObject]) { fragmentObj =>
-            val x = fragmentObj.extract[Metrics]//Values is replaced by metrics
+            val x = fragmentObj.extract[Metrics] //Values is replaced by metrics
             //daa = x :: daa
             ConnectToCassandra.store(x)
             println("\nhiii")
             complete {
               "OK"
             }
+          }
         }
       }
     }
