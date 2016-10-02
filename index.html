@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <HTML>
 	<HEAD>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
+        <title>home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">   -->
+<!-- <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"> -->
 
         <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 		<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
@@ -18,19 +20,25 @@
 	</HEAD>
     <BODY ng-app="chartdiv">
     <p >
-    <h1 class="title"> {{hello}}</h1>
+    <h1 class="title"> Monitoring Server Metrics </h1>
     </p>
     <div>
-
         <ul>
            <!-- <li><a href="http://localhost:8080/view">Complete Details</a></li> -->
-            <li><a href="#details">Complete Details</a></li>
-            <li ng-click="memory()"><a href="#memory">Memory Graph</a></li>
-            <li nq-click=""><a href="#graphs">Load Graph</a></li>
-            <li ng-click=""><a href="#pie">Memory Pie-chart</a></li>
+            <li ng-click="viewDetails()">View Details</li>
+            <li ng-click="viewGraph()">View Graphs</li>
+            <li nq-click="">Load Graph</li>
+            <li><a href="#pie">Memory Pie-chart</a></li>
         </ul>
     </div>
-    <div ng-controller="chart" ng-model="write" ng-view>
+    <div id="secondnav" ng-show="true">
+        <ul>
+            <li> <a href="#details"> {{write}}</a> </li>
+            <li><a href="#grp"> {{write1}} </a></li>
+        </ul>
+    </div>
+
+    <div ng-controller="chart" ng-model="write" style="border: 1px solid black" ng-view>
         <h1>{{value}} {{write}} {{details1}}</h1> <!-- replace id with ng-app-->
     </div>
     </BODY>

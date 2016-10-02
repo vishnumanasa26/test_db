@@ -7,28 +7,51 @@ var app = angular.module('chartdiv', ["ngRoute"]);
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/details",{
-            templateUrl : "http://localhost:8080/view"
+            templateUrl : "compDetails.html"
         })
-        .when("/memory",{
-            templateUrl : ""
+        .when("/grp",{
+            templateUrl : "memoryGraph.html"
         })
         .when("/graphs",{
             templateUrl : ""
         })
         .when("/pie",{
-            templateUrl : ""
+            templateUrl : "loadGraph.html"
         });
 });
 
+app.controller("detailsCtrl", function ($scope, $http) {
+
+    $http.get("http://localhost:8080/view").then(function (response) {
+        $scope.myData = response.data;
+    });
+
+});
+
+
 app.run(function($rootScope) {
-    $rootScope.hello = 'Monitoring Server Metrics';
+    $rootScope.navshow = "false";
+   // $rootScope.hello = 'Monitoring Server Metrics';
     $rootScope.memory = function () {
         $rootScope.details1 = "root details";
 
     }
-    $rootScope.details = function () {
-        $rootScope.write = "HELLOOO";
+    $rootScope.viewDetails = function () {
+        $rootScope.navshow = "true";
+        $rootScope.write = "Compleate Details";
+        $rootScope.write1 = "Details of a Server";
     }
+
+    $rootScope.viewGraph = function () {
+        $rootScope.navshow = "true";
+        $rootScope.write = "Load v/s Time";
+        $rootScope.write1 = "Memory v/s Time";
+        //$rootScope.write2 = "Pie chart of Memory";
+    }
+
+
+
+
 });
 
 
