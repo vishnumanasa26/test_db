@@ -5,16 +5,16 @@
         <title>home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"> -->
-
-        <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
-		<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
-		<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
-		<script type="text/javascript" src="http://www.amcharts.com/lib/3/amstock.js"></script>
-
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 
         <script type="text/javascript" src="amchart-graph.js"></script>
+
+        <script type="text/javascript" src="fusioncharts.js"></script>
+        <script type="text/javascript" src="fusioncharts.charts.js"></script>
+
+        <script type="text/javascript" src="angular-fusioncharts.min.js"></script>
+
         <link rel = "stylesheet" type="text/css" href="graph.css" media="screen"/>
 
 	</HEAD>
@@ -38,7 +38,7 @@
         </ul>
     </div>
 
-    <div ng-controller="chart" ng-model="write" style="border: 1px solid black" ng-view>
+    <div id = "page" ng-controller="chart" ng-model="write" style="border: 1px solid black" ng-view>
         <h1>{{value}} {{write}} {{details1}}</h1> <!-- replace id with ng-app-->
     </div>
     </BODY>
