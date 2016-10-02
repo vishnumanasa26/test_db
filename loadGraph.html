@@ -1,0 +1,41 @@
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<script type="text/javascript" src="fusioncharts.js"></script>
+<script type="text/javascript" src="fusioncharts.charts.js"></script>
+
+<script type="text/javascript" src="angular-fusioncharts.min.js"></script>
+<head>
+    <!--  <link rel="stylesheet" type="text/css" href="graph.css"> -->
+</head>
+<body ng-app="myApp">
+
+
+<div ng-controller= "MyController">
+    <fusioncharts
+            width= 80%
+            height=90%
+            type="column2d"
+            datasource="{{dataSource}}">
+    </fusioncharts>
+    <p><a class="btn btn-default" ng-click="updateMyChartData()"> Click here to view graph </a></p>
+</div>
+
+
+
+<div ng-controller="MyController">
+
+
+    <table>
+        <tr>
+            <th>name</th>
+        </tr>
+        <tr ng-repeat="x in myData">
+            <td ng-model="dataSource.data[1].label"> {{x.LOAD}} </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
