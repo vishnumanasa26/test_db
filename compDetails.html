@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+  <!--  <link rel="stylesheet" type="text/css" href="graph.css"> -->
+</head>
+<body>
+
+
+<p> the server metrics are as follows </p>
+<div ng-app="chartdiv" ng-controller="detailsCtrl">
+
+    <ul>
+        <li ng-repeat="x in myData">
+            {{ x.NAME + ', ' + x.DATE + ', ' + x.LOAD +', ' + x.MEMORY_TOTAL + ' ,' + x.MEMORY }}
+        </li>
+
+    </ul>
+
+</div>
+
+</body>
+</html>
