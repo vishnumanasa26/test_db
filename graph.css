@@ -1,10 +1,11 @@
 body{
-    background-color: lightblue;
+    background-color: white;
 }
 #page {
     width	: 80%;
     height	: 500px;
-    position: relative;
+    position: fixed;
+    top: 15%;
     right: 0px;
     border: 3px
     solid #73AD21;
@@ -13,12 +14,29 @@ body{
     text-align: left;
 }
 
+.button {
+    position: relative;
+    top: 20%;
+    left: 1.5%;
+    background-color: #1a8cff; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+
 .title
 {
-    color: royalblue;
+    color:  #1a8cff;
     text-align: center;
     margin: 1%;
     padding: 10px;
+    font-family: "Comic Sans MS", cursive, sans-serif
 
 }
 #secondnav{
@@ -27,9 +45,9 @@ body{
     top: 50%;
     height: 300px;
     width: 225px;
-    background-color: mediumaquamarine;
+    /*background-color: mediumaquamarine;*/
 }
-
+/*
 ul {
     list-style-type: none;
     margin: 1%;

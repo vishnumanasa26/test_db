@@ -1,6 +1,3 @@
-/**
- * Created by Nikhil Reddy on 19-09-2016.
- */
 
 //for routing
 var app = angular.module('chartdiv', ['ngRoute', 'ng-fusioncharts']);
@@ -9,13 +6,13 @@ app.config(function ($routeProvider) {
         .when("/details",{
             templateUrl : "compDetails.html"
         })
-        .when("/grp",{
+        .when("/memorygraph",{
             templateUrl : "memoryGraph.html"
         })
         .when("/graphs",{
             templateUrl : ""
         })
-        .when("/pie",{
+        .when("/loadgraph",{
             templateUrl : "loadGraph.html"
         });
 });

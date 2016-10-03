@@ -25,18 +25,23 @@
     <div>
         <ul>
            <!-- <li><a href="http://localhost:8080/view">Complete Details</a></li> -->
-            <li ng-click="viewDetails()">View Details</li>
-            <li ng-click="viewGraph()">View Graphs</li>
+            <a href="#loadgraph" class="button"> Load v/s Time Graph </a>
+            <a href="#memorygraph" class="button"> Memory used v/s Graph </a>
+            <li ng-click="viewDetils()">View Details</li>
             <li nq-click="">Load Graph</li>
-            <li><a href="#pie">Memory Pie-chart</a></li>
+
         </ul>
     </div>
-    <div id="secondnav" ng-show="true">
+
+
+    <div id="secondnav" ng-show="navshow">
+        <a href="#details" class="button"> {{write}}</a>
         <ul>
             <li> <a href="#details"> {{write}}</a> </li>
             <li><a href="#grp"> {{write1}} </a></li>
         </ul>
     </div>
+
 
     <div id = "page" ng-controller="chart" ng-model="write" style="border: 1px solid black" ng-view>
         <h1>{{value}} {{write}} {{details1}}</h1> <!-- replace id with ng-app-->
