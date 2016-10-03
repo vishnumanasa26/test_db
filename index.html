@@ -25,22 +25,22 @@
     <div>
         <ul>
            <!-- <li><a href="http://localhost:8080/view">Complete Details</a></li> -->
-            <a href="#loadgraph" class="button"> Load v/s Time Graph </a>
-            <a href="#memorygraph" class="button"> Memory used v/s Graph </a>
-            <li ng-click="viewDetils()">View Details</li>
-            <li nq-click="">Load Graph</li>
+            <a href="#loadgraph" class="button" style="float:left"> Load v/s Time Graph </a>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <a href="#memorygraph" class="button" style="float:left"> Memory Used v/s Graph </a>
+            <br/>
+            <br/>
+            <br/>
+           <!-- <li ng-click="viewDetils()" >View Details</li>
+            <li nq-click="" >Load Graph</li> -->
 
         </ul>
     </div>
 
 
-    <div id="secondnav" ng-show="navshow">
-        <a href="#details" class="button"> {{write}}</a>
-        <ul>
-            <li> <a href="#details"> {{write}}</a> </li>
-            <li><a href="#grp"> {{write1}} </a></li>
-        </ul>
-    </div>
 
 
     <div id = "page" ng-controller="chart" ng-model="write" style="border: 1px solid black" ng-view>
