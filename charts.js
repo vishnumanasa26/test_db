@@ -53,10 +53,6 @@ app.controller("detailsCtrl", function ($scope, $http) {
 app.controller("MyController", function($scope, $http) {
     // chart data source
 
-    $http.get("http://localhost:8080/view").then(function (response) {
-        $scope.myData = response.data;
-    });
-
     $scope.dataSource = {
         chart: {
             caption: "Server Metrics",
@@ -75,7 +71,14 @@ app.controller("MyController", function($scope, $http) {
 
         console.log($scope.myData);
         var x;
+        $scope.dataSource.data= [];
+
+        $http.get("http://localhost:8080/view").then(function (response) {
+            $scope.myData = response.data;
+        });
+
         for(x in $scope.myData) {
+
             $scope.dataSource.data.push({'label': $scope.myData[x].DATE, 'value': $scope.myData[x].LOAD});
 
         }
@@ -87,10 +90,6 @@ app.controller("MyController", function($scope, $http) {
 //controller for memoryGraph.html page
 app.controller("MemoryController", function($scope, $http) {
     // chart data source
-
-    $http.get("http://localhost:8080/view").then(function (response) {
-        $scope.myData = response.data;
-    });
 
     $scope.dataSource = {
         chart: {
@@ -110,6 +109,12 @@ app.controller("MemoryController", function($scope, $http) {
 
         console.log($scope.myData);
         var x;
+        $scope.dataSource.data= [];
+
+        $http.get("http://localhost:8080/view").then(function (response) {
+            $scope.myData = response.data;
+        });
+
         for(x in $scope.myData) {
             $scope.dataSource.data.push({'label': $scope.myData[x].DATE, 'value': $scope.myData[x].MEMORY});
 

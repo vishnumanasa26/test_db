@@ -31,6 +31,24 @@ body{
 
 }
 
+.button1 {
+    height:20px;
+    width:100px;
+    position: fixed;
+    top: 85%;
+    left: 19%;
+    bottom: 20%;
+    background-color: #1a8cff; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
+
 
 
 .title

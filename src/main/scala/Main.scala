@@ -67,8 +67,8 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
       } ~
     //to obtain js file to spray-can server
       get {
-        path("amchart-graph.js") {
-          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\amchart-graph.js")
+        path("charts.js") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\charts.js")
         }
       } ~
     //to obtain css file to spray-can server
