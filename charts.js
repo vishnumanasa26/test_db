@@ -58,8 +58,8 @@ app.controller("MyController", function($scope, $http) {
             caption: "Server Metrics",
             subCaption: "System Load with respect to Time",
             xAxisName: "Time",
-            yAxisName: "System Load",
-            //numberPrefix: "$",
+            yAxisName: "System Load (%)",
+            numberSuffix: "%",
             theme: "ocean"
         },
 
@@ -96,9 +96,11 @@ app.controller("MemoryController", function($scope, $http) {
             caption: "Server Metrics",
             subCaption: "System Memory used with respect to Time",
             xAxisName: "Time",
-            yAxisName: "System Memory", //memory used
-            //numberPrefix: "$",
-            theme: "ocean"
+            yAxisName: "System Memory(MB)", //memory used
+            formatNumberScale: "0",
+            numberSuffix: "MB",
+            theme: "ocean",
+            showValues: "0"
         },
 
 

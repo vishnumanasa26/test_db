@@ -1,5 +1,6 @@
 body{
     background-color: white;
+    font-family: "Comic Sans MS", cursive, sans-serif
 }
 #page {
     width	: 80%;
@@ -15,31 +16,42 @@ body{
 }
 
 .button {
-    height:30px;
-    width:100px;
+    height:50px;
+    width:120px;
     position: relative;
     top: 20%;
     left: 0%;
     background-color: #1a8cff; /* Green */
-    border: none;
     color: white;
     padding: 12px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    border: 2px solid #1a8cff;
 
 }
 
+.button:hover{
+    background-color: white;
+    color: #1a8cff;
+}
+
+.button:active {
+    background-color: white;
+    transform: translateY(4px);
+}
+
+
 .button1 {
-    height:20px;
+    height:40px;
     width:100px;
     position: fixed;
-    top: 85%;
+    top: 83%;
     left: 19%;
     bottom: 20%;
     background-color: #1a8cff; /* Green */
-    border: none;
+    border: 2px solid #1a8cff;
     color: white;
     padding: 12px 32px;
     text-align: center;
@@ -49,6 +61,10 @@ body{
 
 }
 
+.button1:hover{
+    background-color: white;
+    color: #1a8cff;
+}
 
 
 .title
