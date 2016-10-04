@@ -49,26 +49,46 @@ object Main extends App with SimpleRoutingApp with Configuration with Json4sSupp
           getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\index.html")
       }
     } ~
-      get {
-        path("dropdown.html") {
-          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\dropdown.html")
-        }
-      } ~
-    //to obtain compDetails to spray-can server
+      //to obtain compDetails to spray-can server
       get {
         path("compDetails.html") {
           getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\compDetails.html")
         }
       } ~
       get {
-        path("in.html") {
-          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\in.html")
+        path("loadGraph.html") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\loadGraph.html")
+        }
+      } ~
+      get {
+        path("memoryGraph.html") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\memoryGraph.html")
         }
       } ~
     //to obtain js file to spray-can server
       get {
         path("charts.js") {
           getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\charts.js")
+        }
+      } ~
+      get {
+        path("fusioncharts.js") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\fusioncharts.js")
+        }
+      } ~
+      get {
+        path("fusioncharts.charts.js") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\fusioncharts.charts.js")
+        }
+      } ~
+      get {
+        path("fusioncharts.theme.ocean.js") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\fusioncharts.theme.ocean.js")
+        }
+      } ~
+      get {
+        path("angular-fusioncharts.min.js") {
+          getFromFile("C:\\Users\\dell\\Desktop\\test_db\\frontend\\angular-fusioncharts.min.js")
         }
       } ~
     //to obtain css file to spray-can server
