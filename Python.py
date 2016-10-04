@@ -17,8 +17,8 @@ import time
 
 
 
-now=time.strftime("%c")
-
+now=time.strftime("%Y-%m-%d %H:%M:%S");
+print "time:",now
 
 ##print "Date:", date
 
@@ -34,7 +34,7 @@ IP=I.rstrip()
 print "Hostname:", I
 
 Mem = subprocess.Popen(["free -m | grep Mem | awk '{print $4}'"], stdout=subprocess.PIPE, shell=True)
-(o, err1) = Memory.communicate()
+(o, err1) = Mem.communicate()
 Total=o.rstrip()
 Mt=int(Total)
 print "Memory Total in MB:", Total
